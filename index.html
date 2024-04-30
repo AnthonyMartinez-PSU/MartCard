@@ -10,9 +10,10 @@
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
-      border: 2px solid #ccc;
+      border: 2px solid blue;
       border-radius: 10px;
-      background-color: #f9f9f9;
+      background-color: lightblue;
+      margin-top: 20px;
     }
 
     .party-container {
@@ -20,22 +21,29 @@
       border-top: 1px solid #ccc;
       padding-top: 20px;
     }
+
+    .party-container .party-character {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #haxcms-party-ui button {
+      background-color: lightblue;
+      border: 2px solid blue;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #haxcms-party-ui button:hover {
+      background-color: grey;
+    }
   </style>
 </head>
+
 <body>
-  <div id="haxcms-party-ui">
-    <div class="input-container">
-      <input type="text" id="user-input" placeholder="Enter username">
-      <button id="add-user-btn">Add user</button>
-    </div>
-    <div class="party-container">
-      <div id="characters-container">
-      </div>
-    </div>
-    <button id="save-party-btn">Save members to party</button>
-  </div>
-
-
   <title>polaris-chip / my-card</title>
   <style>
     :root,
@@ -210,6 +218,18 @@
 
   </div>
 
+  <div id="haxcms-party-ui">
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Enter username">
+      <button id="add-user-btn">Add user</button>
+    </div>
+    <div class="party-container">
+      <div id="characters-container">
+      </div>
+    </div>
+    <button id="save-party-btn">Save members to party</button>
+  </div>
+
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
   <script type="module" src="./src/counter-app.js"></script>
@@ -258,4 +278,5 @@
     });
   </script>
 </body>
+
 </html>
