@@ -19,6 +19,27 @@
     polaris-chip {
       margin: 16px;
     }
+    .control-wrapper {
+      padding: 16px;
+      background-color: lightblue;
+      border: 2px solid blue;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .control-wrapper .btn {
+      margin-right: 8px;
+      background-color: lightblue;
+      border: 2px solid blue;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .control-wrapper .btn:hover {
+      background-color: grey;
+    }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -30,6 +51,14 @@
   <polaris-chip title="Faculty and Staff"></polaris-chip>
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and donations"></polaris-chip>
+
+  <div class="control-wrapper" style="margin-top: 20px;">
+    <button class="duplicate btn">Clone Card</button>
+    <button id="changetitle" class="btn">Change title</button>
+    <button id="changeimage" class="btn">Change image</button>
+    <button id="changebg" class="btn">Change background</button>
+    <button id="delete" class="btn">Delete</button>
+  </div>
 
   <h1>my-card</h1>
   <my-card 
@@ -71,10 +100,53 @@
   link="https://hax.psu.edu/">
 </my-card>
 
+<script type="module">
+  let isOrange = false;
+
+  document.querySelector('.duplicate').addEventListener('click', function(event) {
+    const cards = document.querySelectorAll('my-card');
+    if (cards.length < 10) {
+      const newCard = cards[0].cloneNode(true);
+      document.querySelector('body').appendChild(newCard);
+    }
+  });
+
+  document.querySelector('#changetitle').addEventListener('click', function(e) {
+    const cardTitle = document.querySelector('my-card').shadowRoot.querySelector('.card-title');
+    if (cardTitle) {
+      cardTitle.innerText = "Great Win!";
+    }
+  });
+
+  document.querySelector('#changeimage').addEventListener('click', function(e) {
+    const cardImage = document.querySelector('my-card').shadowRoot.querySelector('.card-image');
+    if (cardImage) {
+      cardImage.src = "https://github.com/elmsln.png";
+    }
+  });
+
+  document.querySelector('#changebg').addEventListener('click', function(e) {
+    const cards = document.querySelectorAll('my-card');
+    cards.forEach(function(card) {
+      if (isOrange) {
+        card.style.backgroundColor = "";
+      } else {
+        card.style.backgroundColor = "orange";
+      }
+    });
+    isOrange = !isOrange;
+  });
+
+  document.querySelector('#delete').addEventListener('click', function(e) {
+    const cards = document.querySelectorAll('my-card');
+    if (cards.length !== 1) {
+      cards[0].remove();
+    }
+  });
+</script>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
 </body>
-
 </html>
