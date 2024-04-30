@@ -20,60 +20,68 @@ export class CounterApp extends LitElement {
     this.disableDecrement = false;
   }
 
+  updated(changedProperties) {
+    if (changedProperties.has('counter')) {
+      if (this.counter === 21) {
+        this.makeItRain();
+      }
+      this.disableIncrement = this.counter >= this.max;
+      this.disableDecrement = this.counter <= this.min;
+    }
+  }
+
   static get styles() {
     return css`
-      :host {
-        display: block;
-        font-size: 24px;
-      }
-
-      .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      .counter {
-        font-size: 100px;
-        color: black;
-      }
-
-      .counter.orange {
-        color: orange;
-      }
-
-      .counter.blue {
-        color: blue;
-      }
-
-      .counter.grey {
-        color: lightgrey;
-      }
-
-      .counter-buttons {
-        display: flex;
-        align-items: flex-end;
-        margin-top: 20px;
-      }
-
-      button {
-        font-size: 24px;
-        padding: 8px 16px;
-        margin: 0 8px;
-        cursor: pointer;
-        border: 2px solid blue;
-        border-radius: 10px;
-        outline: none;
-        background-color: lightblue;
+      ::host {
+  display: inline-block;
+  font-family: sans-serif;
+  text-align: center;
 }
 
-button:hover {
+.counter {
+  font-size: 48px;
+  color: black;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.counter.orange {
+  color: orange;
+}
+
+.counter.blue {
+  color: blue;
+}
+
+.counter.grey {
+  color: lightgrey;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 2px solid blue;
+  border-radius: 4px;
+  background-color: lightblue;
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover,
+button:focus {
   background-color: grey;
+  color: black;
 }
 
 button:disabled {
-  opacity: 0.5;
+  background-color: #ced4da;
   cursor: not-allowed;
 }
     `;
@@ -81,33 +89,38 @@ button:disabled {
 
   render() {
     return html`
-      <div class="container">
-        <div class="counter ${this.counter === 18 ? 'orange' : ''} ${this.counter === 21 ? 'blue' : ''} ${this.counter === this.min || this.counter === this.max ? 'grey' : ''}">${this.counter}</div>
-        <div class="counter-buttons">
-          <button id="increment" class="btn" @click=${this.increment} ?disabled=${this.disableIncrement}>+</button>
-          <button id="decrement" class="btn" @click=${this.decrement} ?disabled=${this.disableDecrement}>-</button>
+      <confetti-container id="confetti">
+        <div class="counter ${this.counter === 18 ? 'orange' : ''} ${this.counter === 21 ? 'blue' : ''} ${this.counter === this.min || this.counter === this.max ? 'grey' : ''}">
+          ${this.counter}
         </div>
+      </confetti-container>
+      <div class="buttons">
+        <button @click=${() => this.decrement()} ?disabled=${this.disableDecrement}>-</button>
+        <button @click=${() => this.increment()} ?disabled=${this.disableIncrement}>+</button>
       </div>
     `;
   }
 
-  updated(changedProperties) {
-    if (changedProperties.has('counter')) {
-      this.disableIncrement = this.counter >= this.max;
-      this.disableDecrement = this.counter <= this.min;
-    }
-  }
-
   increment() {
-    if (this.counter < this.max) {
+    if (!this.hasLimits || (this.counter < this.max)) {
       this.counter++;
     }
   }
 
   decrement() {
-    if (this.counter > this.min) {
+    if (!this.hasLimits || (this.counter > this.min)) {
       this.counter--;
     }
+  }
+
+  makeItRain() {
+    import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+      (module) => {
+        setTimeout(() => {
+          this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+        }, 0);
+      }
+    );
   }
 }
 
