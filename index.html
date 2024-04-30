@@ -4,6 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAXcms Party UI</title>
+  <style>
+    #haxcms-party-ui {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .party-container {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="haxcms-party-ui">
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Enter username">
+      <button id="add-user-btn">Add user</button>
+    </div>
+    <div class="party-container">
+      <div id="characters-container">
+      </div>
+    </div>
+    <button id="save-party-btn">Save members to party</button>
+  </div>
+
+
   <title>polaris-chip / my-card</title>
   <style>
     :root,
