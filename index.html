@@ -1,12 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Boilerplate for polaris chip">
-  <base href="/">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>polaris-chip / my-card</title>
   <style>
     :root,
     html,
@@ -16,20 +14,57 @@
       font-family: sans-serif;
       background-color: #ededed;
     }
-    polaris-chip {
-      margin: 16px;
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
     }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .chip-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    polaris-chip {
+      flex: 0 0 auto;
+    }
+
+    .counter-container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: lightblue;
+      border: 2px solid blue;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    counter-app {
+      font-size: 24px;
+    }
+
     .control-wrapper {
       padding: 16px;
       background-color: lightblue;
       border: 2px solid blue;
       border-radius: 10px;
       margin-bottom: 12px;
+      text-align: center;
     }
 
     .control-wrapper .btn {
       margin-right: 8px;
-      background-color: lightblue;
+      background-color: lightblue; 
       border: 2px solid blue;
       border-radius: 10px;
       padding: 10px 20px;
@@ -40,113 +75,134 @@
     .control-wrapper .btn:hover {
       background-color: grey;
     }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    my-card {
+      flex: 0 0 calc(33.33% - 20px);
+      max-width: calc(33.33% - 20px);
+    }
   </style>
-  <title>polaris-chip / my-card</title>
 </head>
 
 <body>
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
-  <polaris-chip title="Faculty and Staff"></polaris-chip>
-  <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
-  <polaris-chip title="Grants and donations"></polaris-chip>
+  <div class="container">
+    <h1>polaris-chip</h1>
+    <div class="chip-container">
+      <!-- this is going to do whatever the tag's defaults are -->
+      <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
+      <polaris-chip title="Faculty and Staff"></polaris-chip>
+      <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
+      <polaris-chip title="Grants and donations"></polaris-chip>
+    </div>
 
-  <div class="control-wrapper" style="margin-top: 20px;">
-    <button class="duplicate btn">Clone Card</button>
-    <button id="changetitle" class="btn">Change title</button>
-    <button id="changeimage" class="btn">Change image</button>
-    <button id="changebg" class="btn">Change background</button>
-    <button id="delete" class="btn">Delete</button>
+    <h1>my-card</h1>
+
+    <div class="control-wrapper">
+      <button class="duplicate btn">Clone Card</button>
+      <button id="changetitle" class="btn">Change title</button>
+      <button id="changeimage" class="btn">Change image</button>
+      <button id="changebg" class="btn">Change background</button>
+      <button id="delete" class="btn">Delete</button>
+    </div>
+
+    <div class="card-container">
+      <my-card 
+        title="Penn State Basketball Attendance" 
+        subtitle="How to Achieve Higher Fan Attendance?" 
+        description="Not enough Penn State students are attending Penn State Basketball games." 
+        image="https://pbs.twimg.com/media/Fp2gPq8XwAASTQk?format=jpg&name=4096x4096"
+        link="https://hax.psu.edu/"
+      ></my-card>
+
+      <my-card
+        title="Penn State Basketball Recruiting" 
+        subtitle="Will Penn State Land a High Ranked Recruit?" 
+        description="Penn State has the potential to land Marques Warrick from transfer portal." 
+        image="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nkunorse.com/images/2022/3/4/20220306_UDM_Warrick_CJ.jpg"
+        link="https://hax.psu.edu/"
+      ></my-card>
+
+      <my-card 
+        title="Penn State Basketball Recent Season" 
+        subtitle="Did Penn State Have a Disappointing Season?" 
+        description="Penn State Mens Basketball finished the season one game below .500 with a 16-17 record. Penn State was also not invited to the NCAA tournament this year despite their impressive tournament appearance last year." 
+        image="https://gopsusports.com/images/2024/3/11/CC1_5545.JPG?width=1024&height=682?width=708&height=531&mode=crop&anchor=topcenter"
+        link="https://hax.psu.edu/"
+      ></my-card>
+
+      <my-card 
+        title="Penn State Basketball Next Season" 
+        subtitle="Will Penn State Improve Next Season?" 
+        description="Penn State should improve next season with Head Coach Mike Rhoades becoming adjusted to Penn State and establishing his system and basketball program." 
+        image="https://basicbluesnation.com/wp-content/uploads/2024/02/USATSI_22017074-scaled.jpg"
+        link="https://hax.psu.edu/"
+      ></my-card>
+
+      <my-card title="Penn State Basketball NCAA Tournament" 
+        subtitle="Will Penn State Make the NCAA Tournament Next Year?" 
+        description="Penn State will have to improve from last season in order to be invited back to the NCAA Tournament for a chance to win their first National Championship." 
+        image="https://www.si.com/.image/t_share/MjAyODAxMzE0MTE4MjQ3NDM2/leo-oboyle.jpg"
+        link="https://hax.psu.edu/"
+      ></my-card>
+    </div>
+
+    <div class="counter-container">
+      <counter-app></counter-app>
+    </div>
   </div>
 
-  <h1>my-card</h1>
-  <my-card 
-  title="Penn State Basketball Attendance" 
-  subtitle="How to Achieve Higher Fan Attendance?" 
-  description="Not enough Penn State students are attending Penn State Basketball games." 
-  image="https://pbs.twimg.com/media/Fp2gPq8XwAASTQk?format=jpg&name=4096x4096"
-  link="https://hax.psu.edu/"
-  ></my-card>
-
-  <my-card
-   title="Penn State Basketball Recruiting" 
-   subtitle="Will Penn State Land a High Ranked Recruit?" 
-   description="Penn State has the potential to land Marques Warrick from transfer portal." 
-   image="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nkunorse.com/images/2022/3/4/20220306_UDM_Warrick_CJ.jpg"
-   link="https://hax.psu.edu/"
-   ></my-card>
-
-  <my-card 
-  title="Penn State Basketball Recent Season" 
-  subtitle="Did Penn State Have a Disappointing Season?" 
-  description="Penn State Mens Basketball finished the season one game below .500 with a 16-17 record. Penn State was also not invited to the NCAA tournament this year despite their impressive tournament appearance last year." 
-  image="https://gopsusports.com/images/2024/3/11/CC1_5545.JPG?width=1024&height=682?width=708&height=531&mode=crop&anchor=topcenter"
-  link="https://hax.psu.edu/"
-  ></my-card>
-
-  <my-card 
-  title="Penn State Basketball Next Season" 
-  subtitle="Will Penn State Improve Next Season?" 
-  description="Penn State should improve next season with Head Coach Mike Rhoades becoming adjusted to Penn State and establishing his system and basketball program." 
-  image="https://basicbluesnation.com/wp-content/uploads/2024/02/USATSI_22017074-scaled.jpg"
-  link="https://hax.psu.edu/"
-  ></my-card>
-
-  <my-card title="Penn State Basketball NCAA Tournament" 
-  subtitle="Will Penn State Make the NCAA Tournament Next Year?" 
-  description="Penn State will have to improve from last season in order to be invited back to the NCAA Tournament for a chance to win their first National Championship." 
-  image="https://www.si.com/.image/t_share/MjAyODAxMzE0MTE4MjQ3NDM2/leo-oboyle.jpg"
-  link="https://hax.psu.edu/">
-</my-card>
-
-<script type="module">
-  let isOrange = false;
-
-  document.querySelector('.duplicate').addEventListener('click', function(event) {
-    const cards = document.querySelectorAll('my-card');
-    if (cards.length < 10) {
-      const newCard = cards[0].cloneNode(true);
-      document.querySelector('body').appendChild(newCard);
-    }
-  });
-
-  document.querySelector('#changetitle').addEventListener('click', function(e) {
-    const cardTitle = document.querySelector('my-card').shadowRoot.querySelector('.card-title');
-    if (cardTitle) {
-      cardTitle.innerText = "Great Win!";
-    }
-  });
-
-  document.querySelector('#changeimage').addEventListener('click', function(e) {
-    const cardImage = document.querySelector('my-card').shadowRoot.querySelector('.card-image');
-    if (cardImage) {
-      cardImage.src = "https://github.com/elmsln.png";
-    }
-  });
-
-  document.querySelector('#changebg').addEventListener('click', function(e) {
-    const cards = document.querySelectorAll('my-card');
-    cards.forEach(function(card) {
-      if (isOrange) {
-        card.style.backgroundColor = "";
-      } else {
-        card.style.backgroundColor = "orange";
-      }
-    });
-    isOrange = !isOrange;
-  });
-
-  document.querySelector('#delete').addEventListener('click', function(e) {
-    const cards = document.querySelectorAll('my-card');
-    if (cards.length !== 1) {
-      cards[0].remove();
-    }
-  });
-</script>
-
-  <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
+  <script>
+    let isOrange = false;
+
+    document.querySelector('.duplicate').addEventListener('click', function(event) {
+      const cards = document.querySelectorAll('my-card');
+      if (cards.length < 10) {
+        const newCard = cards[0].cloneNode(true);
+        document.querySelector('.card-container').appendChild(newCard);
+      }
+    });
+
+    document.querySelector('#changetitle').addEventListener('click', function(e) {
+      const cardTitle = document.querySelector('my-card').shadowRoot.querySelector('.card-title');
+      if (cardTitle) {
+        cardTitle.innerText = "Great Win!";
+      }
+    });
+
+    document.querySelector('#changeimage').addEventListener('click', function(e) {
+      const cardImage = document.querySelector('my-card').shadowRoot.querySelector('.card-image');
+      if (cardImage) {
+        cardImage.src = "https://github.com/elmsln.png";
+      }
+    });
+
+    document.querySelector('#changebg').addEventListener('click', function(e) {
+      const cards = document.querySelectorAll('my-card');
+      cards.forEach(function(card) {
+        if (isOrange) {
+          card.style.backgroundColor = "";
+        } else {
+          card.style.backgroundColor = "orange";
+        }
+      });
+      isOrange = !isOrange;
+    });
+
+    document.querySelector('#delete').addEventListener('click', function(e) {
+      const cards = document.querySelectorAll('my-card');
+      if (cards.length !== 1) {
+        cards[0].remove();
+      }
+    });
+  </script>
 </body>
 </html>
